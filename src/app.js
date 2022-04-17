@@ -1,6 +1,7 @@
 import express from "express";
 import { indexRouter } from "./routes/indexRouter";
 import { registerRouter } from "./routes/registerRouter";
+import { loginRouter } from "./routes/loginRouter";
 
 const app = express();
 
@@ -12,5 +13,6 @@ app.use(express.json());
 
 app.use(indexRouter);
 app.use(registerRouter);
+app.use(loginRouter);
 
 export { app };
