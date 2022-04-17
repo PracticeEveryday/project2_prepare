@@ -1,5 +1,7 @@
 import express from "express";
 import { indexRouter } from "./routes/indexRouter";
+import { registerRouter } from "./routes/registerRouter";
+
 const app = express();
 
 // POST 요청 시 Body 사용을 위한 기본코드
@@ -9,5 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(indexRouter);
+app.use(registerRouter);
 
 export { app };
