@@ -11,6 +11,9 @@ registerRouter.post("/register", async (req, res, next) => {
       name,
       info,
     });
+    if (newUser.errorMessage) {
+      throw new Error(newUser.errorMessage);
+    }
     res.status(200).json(newUser);
   } catch (error) {
     next(error);
