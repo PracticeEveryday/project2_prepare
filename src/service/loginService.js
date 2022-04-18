@@ -1,7 +1,7 @@
 import { userModel } from "../db";
 
 import { hashPassword } from "../utils/hashPassword";
-import { makeToken } from "../utils/makeToken";
+import { makeToken, makeRefreshToken } from "../utils/makeToken";
 class loginService {
   static findUser = async ({ email, password }) => {
     const findUser = await userModel.findByEmail(email);
@@ -15,9 +15,11 @@ class loginService {
       const userId = findUser.userId;
       const ObjectId = String(findUser._id);
       const token = makeToken({ userId, ObjectId });
+      const refreshToken = makeRefreshToken();
       const user = {
         findUser,
         token,
+        refreshToken,
       };
       return user;
     } else {

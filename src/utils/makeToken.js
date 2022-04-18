@@ -13,4 +13,9 @@ const makeToken = (object) => {
   return token;
 };
 
-export { makeToken };
+const makeRefreshToken = () => {
+  const refreshToken = jwt.sign({}, jwtkey, { expiresIn: "3d" });
+  return refreshToken;
+};
+
+export { makeToken, makeRefreshToken };
