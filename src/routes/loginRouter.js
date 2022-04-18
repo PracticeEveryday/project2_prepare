@@ -10,9 +10,7 @@ loginRouter.post("/login", async (req, res, next) => {
     if (findUser.errorMessage) {
       throw new Error(findUser.errorMessage);
     }
-    res.status(200).json({
-      status: "succ",
-    });
+    res.status(200).json(findUser);
   } catch (error) {
     next(error);
   }
