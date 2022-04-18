@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { verifyToken } from "../middlewares/verifyToken";
+import { checkToken } from "../middlewares/checkToken";
 const detailedLoginRouter = Router();
 
-detailedLoginRouter.post("/verify", verifyToken, async (req, res, next) => {
+detailedLoginRouter.post("/verify", checkToken, async (req, res, next) => {
   console.log(req.user);
   res.status(200).json({
     status: "succ",

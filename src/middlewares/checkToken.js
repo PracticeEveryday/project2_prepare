@@ -3,13 +3,21 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const verifyToken = (req, res, next) => {
+const checkToken = (req, res, next) => {
   if (req.headers["authorization"]) {
     const jwtkey = process.env.JWT_KEY;
     const token = req.headers["authorization"].split(" ")[1];
     const Object = jwt.verify(token, jwtkey);
-    req.user = Object;
-    next();
+
+    if (Object.status) {
+      req.user = Object;
+      next();
+    } else {
+      res.status(401).json({
+        status: "fail",
+        message: Object.message,
+      });
+    }
   } else {
     console.log(1);
     res.status(401).json({
@@ -19,4 +27,4 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-export { verifyToken };
+export { checkToken };

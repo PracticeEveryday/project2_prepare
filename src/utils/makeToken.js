@@ -8,7 +8,7 @@ const jwtkey = process.env.JWT_KEY;
 
 const makeToken = (object) => {
   const token = jwt.sign(object, jwtkey, {
-    expiresIn: "24h",
+    expiresIn: 10,
   });
   return token;
 };
